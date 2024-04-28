@@ -10,6 +10,7 @@ class Consts {
   static bool isLocal = false;
   static String localAddress = "item";
   static final String httpUrl = "https://expressjs-17jy.onrender.com/api/v1/";
+  static final String httpUrlBlock = "http://172.20.10.3:3003/";
 }
 
 String formatMoney(double value) {

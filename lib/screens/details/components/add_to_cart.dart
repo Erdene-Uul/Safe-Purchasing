@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:my_first_flutter_app/common/colors.dart';
 import 'package:my_first_flutter_app/models/category.dart';
 import 'package:my_first_flutter_app/screens/widgets/bottom.dart';
+import 'package:my_first_flutter_app/service/index.dart';
 
 class AddToCart extends StatefulWidget {
   const AddToCart({
@@ -19,6 +20,7 @@ class AddToCart extends StatefulWidget {
 }
 
 class _AddToCartState extends State<AddToCart> {
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     String _scanBarcode = 'Unknown';
@@ -50,6 +52,22 @@ class _AddToCartState extends State<AddToCart> {
       });
     }
 
+    downloadData() async {
+      await dataUtil.getProductBlock().then((data) {
+        print("DATAGET ========== ${data.data}");
+        setState(() {
+          isLoading = false;
+        });
+        // if (data.hasError) {
+        //   return "";
+        // }
+        // setState(() {
+        //   list = data.data!;
+        //   print("SCREEN =========== ${list.length}");
+        // });
+      });
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: kDefaultPadding),
       child: Row(
@@ -64,12 +82,13 @@ class _AddToCartState extends State<AddToCart> {
             ),
             child: IconButton(
               onPressed: () {
-                scanQR();
+                // scanQR();
                 // FlutterBarcodeScanner.getBarcodeStreamReceiver(
                 //         "#ff6666", "Cancel", false, ScanMode.DEFAULT)
                 //     ?.listen((barcode) {
                 //   /// barcode to be used
                 // });
+                downloadData();
                 print("==============BARCODE========= ");
                 // if (barcode.contains("]C1")) {
                 //   barcode = barcode.substring(3, barcode.length);

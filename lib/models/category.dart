@@ -40,7 +40,7 @@ class CategoryModel {
 
 class ProductItem {
   int id;
-  String barcodeId, name, image, createdAt;
+  String barcodeId, name, image, createdAt, description;
   bool isAvailable;
   double price;
 
@@ -51,6 +51,7 @@ class ProductItem {
       required this.barcodeId,
       required this.createdAt,
       required this.image,
+      required this.description,
       required this.isAvailable});
 
   factory ProductItem.fromJson(JsonMap json) {
@@ -60,8 +61,47 @@ class ProductItem {
       barcodeId: json['barcodeId'] ?? '',
       createdAt: json['createdAt'] ?? '',
       name: json['name'] ?? '',
+      description: json['description'] ?? '',
       image: json['image'].toString(),
       isAvailable: json['isAvailable'] ?? true,
+    );
+  }
+}
+
+class ProductsResponseBlock {
+  List<GetProductItem>? data;
+
+  bool hasError = false;
+  String message = "";
+
+  ProductsResponseBlock(this.data);
+
+  ProductsResponseBlock.hasError(this.message) {
+    message = message;
+    hasError = true;
+  }
+}
+
+class GetProductItem {
+  String id, barcode, manufacturerName, createdDate, deliveryDate, arrivalDate;
+  // int 1;
+
+  GetProductItem(
+      {required this.id,
+      required this.barcode,
+      required this.manufacturerName,
+      required this.createdDate,
+      required this.deliveryDate,
+      required this.arrivalDate});
+
+  factory GetProductItem.fromJson(JsonMap json) {
+    return GetProductItem(
+      id: json['itemId'] ?? 0,
+      barcode: json['barcode'] ?? 0.0,
+      manufacturerName: json['manufacturerName'] ?? '',
+      createdDate: json['deliveryDate'] ?? '',
+      arrivalDate: json['arrivalDate'] ?? '',
+      deliveryDate: json['deliveryDate'] ?? '',
     );
   }
 }

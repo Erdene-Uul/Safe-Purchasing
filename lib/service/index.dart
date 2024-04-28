@@ -33,4 +33,26 @@ class DataUtil {
     }
     return CategoryResponse.hasError(responseJson['errorMessage'].toString());
   }
+
+  Future<ProductsResponseBlock> getProductBlock() async {
+    http.Response response = await http.get(
+      Uri.parse("${Consts.httpUrlBlock}products"),
+      headers: {
+        "content-type": "application/json",
+      },
+    );
+
+    print("BLOCKCHAIN ITEM =============== $response");
+    var responseJson = json.decode(utf8.decode(response.bodyBytes));
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      // print(responseJson['data']);
+      List<dynamic> list =
+          responseJson['data'].map((i) => GetProductItem.fromJson(i)).toList();
+      List<GetProductItem> models = list.cast();
+      print(models);
+      return ProductsResponseBlock(models);
+    }
+    return ProductsResponseBlock.hasError(
+        responseJson['errorMessage'].toString());
+  }
 }

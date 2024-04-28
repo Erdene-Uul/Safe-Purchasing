@@ -57,6 +57,9 @@ class _OrderSuccessScreenState extends State<OrderSuccessScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            SizedBox(
+              height: 40,
+            ),
             TitleOverflowWidget(
               title: 'Таны захиалга амжилттай үүслээ',
               color: Colors.black,

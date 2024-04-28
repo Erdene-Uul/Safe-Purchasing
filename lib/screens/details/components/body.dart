@@ -33,7 +33,7 @@ class Body extends StatelessWidget {
             child: Column(
               children: [
                 // ColorAndSize(product: product),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Description(product: product),

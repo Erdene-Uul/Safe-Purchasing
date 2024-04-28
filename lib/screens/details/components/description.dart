@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_first_flutter_app/common/colors.dart';
 import 'package:my_first_flutter_app/models/category.dart';
-import 'package:my_first_flutter_app/models/product_model.dart';
-
 
 class Description extends StatelessWidget {
   const Description({
@@ -14,10 +12,11 @@ class Description extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: kDefaultPadding),
-      child: Text(product != null ? product!.name : "",
-          style: const TextStyle(height: 1.5)),
+    return const Padding(
+      padding: EdgeInsets.symmetric(vertical: kDefaultPadding),
+      child: Text(
+          "Гадил нь гадилын ургамалд ургах жимс бөгөөд Зүүн Өмнөд Азийн дулаан бүсээс гаралтай. Гадил нь 100 орчим төрөл байдаг байна. Анх хүнсний чиглэлээр тарьж ургуулсан нь Папуа Шинэ Гвинейд байж болох талтай.",
+          style: TextStyle(height: 1.5)),
     );
   }
 }
